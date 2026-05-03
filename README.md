@@ -1,1 +1,4 @@
 # bcis309-poster
+
+© 2026 Trek Ellwood. All rights reserved.  
+This project and its contents may not be copied, modified, or redistributed without permission.
