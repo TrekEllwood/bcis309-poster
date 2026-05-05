@@ -1,532 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smarter Defaults for Patient Note Workflows - Trek Ellwood</title>
-<style>
-  @page {
-    size: 594mm 841mm;
-    margin: 0;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smarter Defaults for Patient Note Workflows - Trek Ellwood</title>
+  <style>
+    @page {
+      size: 594mm 841mm;
+      margin: 0;
+    }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    background: #0D1117;
-    font-family: 'Segoe UI', Arial, sans-serif;
-  }
+    body {
+      margin: 0;
+      background: #0D1117;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
 
-  html, body {
-    height: 100%;
-  }
+    html,
+    body {
+      height: 100%;
+    }
 
-  /* =========================
+    /* =========================
     WRAPPER (WEB VIEW ONLY)
   ========================= */
-  .page-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 24px;
-    min-height: 100vh;
-    overflow-x: auto;
-    overflow-y: auto;
-  }
+    .page-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px;
+      min-height: 100vh;
+      overflow-x: auto;
+      overflow-y: auto;
+    }
 
-  /* =========================
+    /* =========================
     MOBILE
   ========================= */
-  @media (max-width: 1024px) {
-    .page-wrapper {
-      padding: 10px;
+    @media (max-width: 1024px) {
+      .page-wrapper {
+        padding: 10px;
+      }
+
+      .poster {
+        transform: none;
+        width: 594mm;
+        min-height: 841mm;
+        zoom: 0.45;
+      }
     }
 
-    .poster {
-      transform: none;
-      width: 594mm;
-      min-height: 841mm;
-      zoom: 0.45;
-    }
-  }
+    @media (max-width: 768px) {
+      .page-wrapper {
+        padding: 10px;
+      }
 
-  @media (max-width: 768px) {
-    .page-wrapper {
-      padding: 10px;
+      .poster {
+        zoom: 0.35;
+      }
+
     }
 
-    .poster {
-      zoom: 0.35;
+    @media (max-width: 390px) {
+      .poster {
+        transform-origin: top center;
+        transform: scale(0.80);
+      }
     }
 
-  }
-
-  @media (max-width: 390px) {
-    .poster {
-      transform-origin: top center;
-      transform: scale(0.85);
-    }
-  }
-
-  /* =========================
+    /* =========================
     POSTER (ALWAYS FIXED SIZE)
   ========================= */
-  .poster {
-    width: 594mm;
-    min-height: 841mm;
-    box-shadow: 0 12px 45px rgba(0,0,0,0.55);
-    background: #0D1117 url('assets/new-zealand-elixir-style.svg') center/70% no-repeat;
-    /* display: flex; */
-    /* flex-direction: column; */
-  }
-
-  /* =========================
-    PRINT (A1 EXACT)
-  ========================= */
-  @media print {
-    body {
-      background: none;
+    .poster {
+      width: 594mm;
+      min-height: 841mm;
+      box-shadow: 0 12px 45px rgba(0, 0, 0, 0.55);
+      background: #0D1117 url('assets/new-zealand-elixir-style.svg') center/70% no-repeat;
+      /* display: flex; */
+      /* flex-direction: column; */
     }
 
-    .page-wrapper {
+    /* =========================
+    PRINT (A1 EXACT)
+  ========================= */
+    @media print {
+      body {
+        background: none;
+      }
+
+      .page-wrapper {
+        padding: 0;
+      }
+
+      .poster {
+        width: 594mm;
+        height: 841mm;
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: #010409f2;
+      color: #FFFFFF;
+      padding: 14mm 18mm 12mm 18mm;
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      border-bottom: 1px solid #21262D;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .header-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+    }
+
+    .header-name {
+      font-size: 34pt;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header-institution {
+      font-size: 22pt;
+      font-weight: 400;
+      color: #8B949E;
+    }
+
+    .header-ara-logo {
+      height: 30mm;
+    }
+
+    .header-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-logo {
+      height: 40mm;
+      filter: invert(1);
+      flex-shrink: 0;
+    }
+
+    .header-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-bottom-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+
+    .header-qr-and-text {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4mm;
+    }
+
+    .header-qr {
+      width: 30mm;
+      height: 30mm;
+      flex-shrink: 0;
+    }
+
+    .header-qr img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .header-title {
+      font-size: 76pt;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .header-subtitle {
+      display: flex;
+      font-size: 24pt;
+      font-weight: 400;
+      color: #8B949E;
+    }
+
+    .header-bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 4mm;
+    }
+
+    .header-contact {
+      display: flex;
+      /* gap: 14mm; */
+      /* align-items: center; */
+      flex-wrap: wrap;
+      gap: 2mm 14mm;
+      margin-top: 1mm;
+      margin-right: 10mm;
+      font-size: 16pt;
+      color: #8B949E;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+    }
+
+    .contact-item a {
+      text-decoration: none;
+      color: inherit;
+      display: inline;
+    }
+
+    .contact-item a:visited,
+    .contact-item a:hover,
+    .contact-item a:active {
+      text-decoration: none;
+      color: inherit;
+      display: inline;
+    }
+
+    .contact-icon {
+      width: 7mm;
+      height: 7mm;
+      flex-shrink: 0;
+      object-fit: contain;
+      filter: brightness(0) invert(0.55);
+    }
+
+    sup {
+      font-size: 0.7em;
+      color: #8B949E;
+      font-weight: 600;
+    }
+
+    /* ===== KANBAN BOARD ===== */
+    .kanban-board {
+      flex: 1;
+      padding: 5mm 12mm 5mm 12mm;
+      display: flex;
+      flex-direction: column;
+      gap: 5mm;
+    }
+
+    /* Each kanban row is a stacked section */
+    .kanban-row {
+      flex: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+      min-height: 0;
+    }
+
+    .kanban-row-large {
+      flex: 20 1 auto;
+    }
+
+    .row-label {
+      background: #161B22f7;
+      color: #E6EDF3;
+      border-radius: 4mm;
+      padding: 3mm 8mm;
+      display: flex;
+      align-items: center;
+      gap: 4mm;
+      border: 1px solid #30363D;
+    }
+
+    .row-label-tag {
+      width: 7mm;
+      height: 7mm;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .row-label-title {
+      font-size: 24pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .row-label-subtitle {
+      font-size: 18pt;
+      font-weight: 400;
+      color: #8B949E;
+      margin-left: 1mm;
+    }
+
+    .tag-blue {
+      background: #3B82F6;
+    }
+
+    .tag-amber {
+      background: #F59E0B;
+    }
+
+    .tag-green {
+      background: #10B981;
+    }
+
+    .tag-purple {
+      background: #8B5CF6;
+    }
+
+    /* Cards within each row */
+    .row-cards {
+      flex: 1;
+      display: flex;
+      gap: 5mm;
+      min-width: 0;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      flex: 1;
+      background: #161B22f2;
+      border-radius: 3mm;
+      padding: 4mm 5mm 2mm 5mm;
+      border: 1px solid #30363D;
+      border-top: 2mm solid transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-width: 0;
+    }
+
+    .card-blue {
+      border-top-color: #3B82F6;
+    }
+
+    .card-amber {
+      border-top-color: #F59E0B;
+    }
+
+    .card-green {
+      border-top-color: #10B981;
+    }
+
+    .card-purple {
+      border-top-color: #8B5CF6;
+    }
+
+    .card-title {
+      font-size: 24pt;
+      font-weight: 700;
+      color: #E6EDF3;
+    }
+
+    .card-caption-title {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #E6EDF3;
+    }
+
+    .card-caption-description {
+      font-size: 18pt;
+      font-style: italic;
+      color: #E6EDF3;
+    }
+
+    .card-body {
+      font-size: 18pt;
+      line-height: 1.45;
+      color: #C9D1D9;
+    }
+
+    .card-body ul {
+      padding-left: 7mm;
+      list-style-type: square;
+    }
+
+    .card-body ul li {
+      margin-bottom: 2mm;
+    }
+
+    .card-body strong {
+      color: #E6EDF3;
+    }
+
+    .card-figure {
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+
+    .figure-image {
+      width: fit-content;
+      flex: 1 1 0;
+      min-height: 0%;
+      border: 1.5px dashed #30363D;
+      border-radius: 2mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #484F58;
+      font-size: 16pt;
+      /* background: #0D1117; */
+      overflow: hidden;
+    }
+
+    .figure-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .figure-note {
+      font-size: 14pt;
+      color: #8B949E;
+      font-style: italic;
+      /* text-align: center; */
+    }
+
+    .figure-note-caption {
+      font-size: 14pt;
+      color: #8B949E;
+      /* text-align: center; */
+    }
+
+    /* ===== LEAN-AGILE STRIP ===== */
+    .lean-strip {
+      background: #161B22f7;
+      color: #E6EDF3;
+      padding: 6mm 14mm;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: 4mm;
+      border-top: 1px solid #30363D;
+      border-bottom: 1px solid #30363D;
+    }
+
+    .lean-strip-title {
+      font-size: 18pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8B949E;
+    }
+
+    .lean-pills {
+      display: flex;
+      gap: 5mm;
+      flex-wrap: wrap;
+    }
+
+    .lean-pill {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      background: #21262D;
+      border: 1px solid #30363D;
+      border-radius: 20px;
+      padding: 2.5mm 5mm;
+      font-size: 15pt;
+      font-weight: 500;
+      color: #C9D1D9;
+    }
+
+    .pill-icon {
+      font-size: 16pt;
+    }
+
+    .lean-pill .pill-detail {
+      color: #8B949E;
+      font-weight: 400;
+      font-size: 13pt;
+    }
+
+    /* ===== ACKNOWLEDGEMENTS & REFERENCES ===== */
+    .bottom-section {
+      padding: 6mm 14mm;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12mm;
+      background: #0D1117f7;
+    }
+
+    .bottom-block h3 {
+      font-size: 22pt;
+      font-weight: 700;
+      color: #E6EDF3;
+      margin-bottom: 3mm;
+    }
+
+    .bottom-block p,
+    .bottom-block li {
+      font-size: 14pt;
+      line-height: 1.5;
+      color: #8B949E;
+    }
+
+    .bottom-block strong {
+      color: #C9D1D9;
+    }
+
+    .bottom-block ul {
+      list-style: none;
       padding: 0;
     }
 
-    .poster {
-      width: 594mm;
-      height: 841mm;
+    .bottom-block ul li {
+      margin-bottom: 1mm;
+    }
+
+    .ref-list a {
+      padding-left: 4mm;
+    }
+
+    .ref-list li {
+      text-indent: -4mm;
+      padding-left: 4mm;
+    }
+
+    .ref-list a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #010409;
+      padding: 8mm 14mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16mm;
+      border-top: 1px solid #21262D;
+    }
+
+    .tech-logo {
       display: flex;
       flex-direction: column;
-      box-shadow: none;
-      break-inside: avoid;
+      align-items: center;
+      gap: 2.5mm;
+      color: #8B949E;
+      font-size: 13pt;
+      font-weight: 500;
     }
-  }
 
-  /* ===== HEADER ===== */
-  .header {
-    background: #010409f2;
-    color: #FFFFFF;
-    padding: 14mm 18mm 12mm 18mm;
-    display: flex;
-    flex-direction: column;
-    gap: 3mm;
-    border-bottom: 1px solid #21262D;
-  }
-
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .header-identity {
-    display: flex;
-    flex-direction: column;
-    gap: 1mm;
-  }
-
-  .header-name {
-    font-size: 34pt;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-
-  .header-institution {
-    font-size: 22pt;
-    font-weight: 400;
-    color: #8B949E;
-  }
-
-  .header-ara-logo {
-    height: 22mm;
-  }
-
-  .header-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .header-logo {
-    height: 40mm;
-    filter: invert(1);
-    flex-shrink: 0;
-  }
-
-  .header-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .header-bottom-left {
-    display: flex;
-    flex-direction: column;
-    gap: 2mm;
-  }
-
-  .header-qr-and-text {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 4mm;
-  }
-
-  .header-qr {
-    width: 30mm;
-    height: 30mm;
-    flex-shrink: 0;
-  }
-
-  .header-qr img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .header-title {
-    font-size: 76pt;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.5px;
-  }
-
-  .header-subtitle {
-    font-size: 24pt;
-    font-weight: 400;
-    color: #8B949E;
-  }
-
-  .header-contact {
-    display: flex;
-    gap: 14mm;
-    align-items: center;
-    margin-top: 1mm;
-    font-size: 16pt;
-    color: #8B949E;
-  }
-
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 3mm;
-  }
-
-  .contact-item a {
-    text-decoration: none;
-    color: inherit;
-    display: inline;
-  }
-
-  .contact-item a:visited,
-  .contact-item a:hover,
-  .contact-item a:active {
-    text-decoration: none;
-    color: inherit;
-    display: inline;
-  } 
-
-  .contact-icon {
-    width: 7mm;
-    height: 7mm;
-    flex-shrink: 0;
-    object-fit: contain;
-    filter: brightness(0) invert(0.55);
-  }
-
-  sup {
-    font-size: 0.7em;
-    color: #8B949E;
-    font-weight: 600;
-  }
-
-  /* ===== KANBAN BOARD ===== */
-  .kanban-board {
-    flex: 1;
-    padding: 7mm 12mm 7mm 12mm;
-    display: flex;
-    flex-direction: column;
-    gap: 5mm;
-  }
-
-  /* Each kanban row is a stacked section */
-  .kanban-row {
-    flex: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4mm;
-    min-height: 0;
-  }
-
-  .row-label {
-    background: #161B22f7;
-    color: #E6EDF3;
-    border-radius: 4mm;
-    padding: 4mm 8mm;
-    display: flex;
-    align-items: center;
-    gap: 4mm;
-    border: 1px solid #30363D;
-  }
-
-  .row-label-tag {
-    width: 7mm;
-    height: 7mm;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .row-label-title {
-    font-size: 24pt;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .row-label-subtitle {
-    font-size: 18pt;
-    font-weight: 400;
-    color: #8B949E;
-    margin-left: 1mm;
-  }
-
-  .tag-blue { background: #3B82F6; }
-  .tag-amber { background: #F59E0B; }
-  .tag-green { background: #10B981; }
-  .tag-purple { background: #8B5CF6; }
-
-  /* Cards within each row */
-  .row-cards {
-    flex: 1;
-    display: flex;
-    gap: 5mm;
-    min-width: 0;
-  }
-
-  /* ===== CARDS ===== */
-  .card {
-    flex: 1;
-    background: #161B22f2;
-    border-radius: 3mm;
-    padding: 6mm;
-    border: 1px solid #30363D;
-    border-top: 2mm solid transparent;
-    display: flex;
-    flex-direction: column;
-    gap: 3mm;
-    min-width: 0;
-  }
-
-  .card-blue { border-top-color: #3B82F6; }
-  .card-amber { border-top-color: #F59E0B; }
-  .card-green { border-top-color: #10B981; }
-  .card-purple { border-top-color: #8B5CF6; }
-
-  .card-title {
-    font-size: 24pt;
-    font-weight: 700;
-    color: #E6EDF3;
-  }
-
-  .card-caption {
-    font-size: 24pt;
-    font-style: italic;
-    color: #E6EDF3;
-  }
-
-  .card-body {
-    font-size: 18pt;
-    line-height: 1.45;
-    color: #C9D1D9;
-  }
-
-  .card-body ul {
-    padding-left: 7mm;
-    list-style-type: square;
-  }
-
-  .card-body ul li {
-    margin-bottom: 2mm;
-  }
-
-  .card-body strong {
-    color: #E6EDF3;
-  }
-
-  .card-figure {
-    display: flex;
-    flex-direction: column;
-    gap: 2mm;
-  }
-
-  .figure-image {
-    width: 100%;
-    flex: 1 1 0;
-    min-height: 0;
-    border: 1.5px dashed #30363D;
-    border-radius: 2mm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #484F58;
-    font-size: 16pt;
-    background: #0D1117;
-    overflow: hidden;
-  }
-
-  .figure-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .figure-note {
-    font-size: 14pt;
-    color: #8B949E;
-    font-style: italic;
-    /* text-align: center; */
-  }
-
-  .figure-note-caption {
-    font-size: 14pt;
-    color: #8B949E;
-    /* text-align: center; */
-  }
-
-  /* ===== LEAN-AGILE STRIP ===== */
-  .lean-strip {
-    background: #161B22f7;
-    color: #E6EDF3;
-    padding: 6mm 14mm;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    gap: 4mm;
-    border-top: 1px solid #30363D;
-    border-bottom: 1px solid #30363D;
-  }
-
-  .lean-strip-title {
-    font-size: 18pt;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #8B949E;
-  }
-
-  .lean-pills {
-    display: flex;
-    gap: 5mm;
-    flex-wrap: wrap;
-  }
-
-  .lean-pill {
-    display: flex;
-    align-items: center;
-    gap: 2mm;
-    background: #21262D;
-    border: 1px solid #30363D;
-    border-radius: 20px;
-    padding: 2.5mm 5mm;
-    font-size: 15pt;
-    font-weight: 500;
-    color: #C9D1D9;
-  }
-
-  .pill-icon {
-    font-size: 16pt;
-  }
-
-  .lean-pill .pill-detail {
-    color: #8B949E;
-    font-weight: 400;
-    font-size: 13pt;
-  }
-
-  /* ===== ACKNOWLEDGEMENTS & REFERENCES ===== */
-  .bottom-section {
-    padding: 6mm 14mm;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12mm;
-    background: #0D1117f7;
-  }
-
-  .bottom-block h3 {
-    font-size: 22pt;
-    font-weight: 700;
-    color: #E6EDF3;
-    margin-bottom: 3mm;
-  }
-
-  .bottom-block p,
-  .bottom-block li {
-    font-size: 14pt;
-    line-height: 1.5;
-    color: #8B949E;
-  }
-
-  .bottom-block strong {
-    color: #C9D1D9;
-  }
-
-  .bottom-block ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .bottom-block ul li {
-    margin-bottom: 1mm;
-  }
-
-  .ref-list a {
-    padding-left: 4mm;
-  }
-
-  .ref-list li {
-    text-indent: -4mm;
-    padding-left: 4mm;
-  }
-
-  .ref-list a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  /* ===== FOOTER ===== */
-  .footer {
-    background: #010409;
-    padding: 8mm 14mm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16mm;
-    border-top: 1px solid #21262D;
-  }
-
-  .tech-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5mm;
-    color: #8B949E;
-    font-size: 13pt;
-    font-weight: 500;
-  }
-
-  .tech-logo-icon {
-    width: 18mm;
-    height: 18mm;
-    object-fit: contain;
-    filter: brightness(0) invert(0.75);
-  }
-
-</style>
+    .tech-logo-icon {
+      width: 18mm;
+      height: 18mm;
+      object-fit: contain;
+      filter: brightness(0) invert(0.75);
+    }
+  </style>
 </head>
+
 <body>
   <div class="page-wrapper">
     <div class="poster">
@@ -538,45 +582,54 @@
             <div class="header-name">Trek Ellwood</div>
             <div class="header-institution">Ara Institute of Canterbury &nbsp;|&nbsp; Bachelor of ICT, 2026 Sem 1</div>
           </div>
-          <img src="assets/Ara logo_secondary_white_2 bylines.svg" alt="Ara Institute of Canterbury" class="header-ara-logo">
+          <img src="assets/Ara logo_secondary_white_2 bylines.svg" alt="Ara Institute of Canterbury"
+            class="header-ara-logo">
         </div>
         <div class="header-title-row">
           <div class="header-title">Smarter Defaults for<br>Patient Note Workflows</div>
-          <img src="assets/elixirLogo-small.svg" alt="Elixir Software" class="header-logo">
+          <img src="assets/elixirLogo-small.svg" alt="Elixir Software" class="header-logo"
+            style="filter: brightness(0) invert(1);">
         </div>
         <div class="header-bottom-row">
           <div class="header-bottom-left">
             <div class="header-qr-and-text">
               <a href="https://trekellwood.github.io/bcis309-poster/" target="_blank" rel="noopener noreferrer">
                 <div class="header-qr">
-                  <img src="assets/httpstrekellwood.github.iobcis309-poster-qr.svg" alt="QR Code - trekellwood.github.io/bcis309-poster">
+                  <img src="assets/httpstrekellwood.github.iobcis309-poster-qr.svg"
+                    alt="QR Code - trekellwood.github.io/bcis309-poster">
                 </div>
               </a>
               <div>
-                <div class="header-subtitle">Auto-Assign Consultant for Patient Notes &nbsp;|&nbsp; Elixir Software Limited</div>
+                <!-- <div class="header-subtitle">Elixir Software Limited</div> -->
                 <div class="header-contact">
                   <span class="contact-item">
                     <img src="assets/email-icon.svg" alt="Email" class="contact-icon" style="filter: none;">
                     <a href="mailto:trekellwood@gmail.com">trekellwood@gmail.com</a>
                   </span>
                   <span class="contact-item">
-                    <img src="assets/linkedin-icon.svg" alt="LinkedIn" class="contact-icon" style="filter: none; border-radius: 1mm;">
-                    <a href="https://linkedin.com/in/trek-ellwood" target="_blank" rel="noopener noreferrer">linkedin.com/in/trek-ellwood</a>
+                    <img src="assets/linkedin-icon.svg" alt="LinkedIn" class="contact-icon"
+                      style="filter: none; border-radius: 1mm;">
+                    <a href="https://linkedin.com/in/trek-ellwood" target="_blank"
+                      rel="noopener noreferrer">linkedin.com/in/trek-ellwood</a>
                   </span>
                   <span class="contact-item">
                     <img src="assets/github-white.svg" alt="GitHub" class="contact-icon" style="filter: none;">
-                    <a href="https://github.com/TrekEllwood" target="_blank" rel="noopener noreferrer">github.com/TrekEllwood</a>
+                    <a href="https://github.com/TrekEllwood" target="_blank"
+                      rel="noopener noreferrer">github.com/TrekEllwood</a>
                   </span>
                 </div>
               </div>
             </div>
           </div>
+          <div class="header-bottom-right">
+            <div class="header-subtitle">Elixir Software Limited</div>
             <a href="https://www.elixir.nz/" target="_blank" rel="noopener noreferrer">
               <div class="header-qr">
                 <img src="assets/Elixir-website-qr-grey.svg" alt="QR Code - elixir.nz">
               </div>
             </a>
           </div>
+        </div>
       </header>
 
       <!-- KANBAN BOARD -->
@@ -593,14 +646,17 @@
             <div class="card card-blue">
               <div class="card-title">Introduction</div>
               <div class="card-body">
-                In Elixir's healthcare software, admin staff must manually select a consultant from a dropdown every time they create a patient note. In busy multi-doctor clinics, this repetitive task increases clicks, slows workflows, and risks selecting the wrong consultant.
+                In Elixir's healthcare software, admin staff must manually select a consultant from a dropdown every
+                time they create a patient note. In busy multi-doctor clinics, this repetitive task increases clicks,
+                slows workflows, and risks selecting the wrong consultant.
               </div>
             </div>
 
             <div class="card card-blue">
               <div class="card-title">Aim</div>
               <div class="card-body">
-                To implement a default consultant assignment feature that auto-populates across <strong>12 patient note types</strong>, reducing repetitive manual steps while preserving manual override capability.
+                To implement a default consultant assignment feature that auto-populates across <strong>12 patient note
+                  types</strong>, reducing repetitive manual steps while preserving manual override capability.
               </div>
             </div>
 
@@ -630,10 +686,12 @@
               <div class="card-title">Lean-Agile Approach</div>
               <div class="card-body">
                 <ul>
-                  <li><strong>Kanban:</strong><sup>1</sup> GitHub Projects board (Todo &rarr; In Progress &rarr; Review &rarr; Done)</li>
-                  <li><strong>Lean:</strong><sup>2</sup> Incremental delivery, eliminate waste, minimal viable changes</li>
-                  <li><strong>DevOps:</strong><sup>3</sup> CI/CD with automated linting &amp; testing</li>
-                  <li><strong>Scrumban:</strong><sup>4</sup> Sprint-like focus within continuous flow</li>
+                  <li><strong>Kanban:</strong><sup>1</sup> GitHub Projects board (Todo &rarr; In Progress &rarr; Review
+                    &rarr; Done)</li>
+                  <li><strong>Lean:</strong><sup>2</sup> Incremental delivery, eliminate waste, minimal viable changes
+                  </li>
+                  <li><strong>Scrumban:</strong><sup>3</sup> Sprint-like focus within continuous flow</li>
+                  <li><strong>DevOps:</strong><sup>4</sup> CI/CD with automated linting &amp; testing</li>
                 </ul>
               </div>
             </div>
@@ -665,7 +723,7 @@
         </div>
 
         <!-- ROW 3: DONE / DELIVERED -->
-        <div class="kanban-row">
+        <div class="kanban-row kanban-row-large">
           <div class="row-label">
             <span class="row-label-tag tag-green"></span>
             <span class="row-label-title">Done</span>
@@ -686,18 +744,32 @@
             </div>
 
             <div class="card card-green card-figure">
-              <div class="card-title">Figure 1</div>
-              <div class="card-caption">User Settings</div>
+              <div class="card-caption-title">Figure 1</div>
+              <div class="card-caption-description">My Development Journey</div>
               <div class="figure-image">
-                <img src="assets/Screenshot-dropdown.jpg" alt="Screenshot: &quot;Auto-assign Note Types to&quot; dropdown">
+                <img src="assets/my-dev-journey.svg" alt="Screenshot: &quot;Auto-assign Note Types to&quot; dropdown"
+                  style="filter: invert(0); mix-blend-mode: difference; color: white;">
               </div>
-                <div style="display: flex; gap: 1mm;">
-                  <div class="figure-note">Note. </div>
-                  <div class="figure-note-caption">The new dropdown in User Settings</div>
-                </div>
+              <div style="display: flex; gap: 1mm;">
+                <div class="figure-note">Note. </div>
+                <div class="figure-note-caption">My development journey based on the lean principles<sup>2</sup></div>
+              </div>
             </div>
 
             <div class="card card-green card-figure">
+              <div class="card-caption-title">Figure 2</div>
+              <div class="card-caption-description">User Settings</div>
+              <div class="figure-image">
+                <img src="assets/Screenshot-dropdown.png"
+                  alt="Screenshot: &quot;Auto-assign Note Types to&quot; dropdown">
+              </div>
+              <div style="display: flex; gap: 1mm;">
+                <div class="figure-note">Note. </div>
+                <div class="figure-note-caption">The new dropdown in User Settings</div>
+              </div>
+            </div>
+
+            <!-- <div class="card card-green card-figure">
               <div class="card-title">Figure 2</div>
               <div class="card-caption">Auto-populated Note</div>
               <div class="figure-image">
@@ -707,7 +779,7 @@
                   <div class="figure-note">Note. </div>
                   <div class="figure-note-caption">A patient note with consultant auto-populated from defaults</div>
                 </div>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -726,7 +798,6 @@
                   <li>Git workflows were the most critical skill gap not taught in coursework</li>
                   <li>Legacy React <em>componentDidMount</em> issues required targeted debugging</li>
                   <li>Built MinIO container to solve local vs staging environment differences</li>
-                  <li>Definition of Done works best as first a pre-submission self-check</li>
                 </ul>
               </div>
             </div>
@@ -734,7 +805,9 @@
             <div class="card card-purple">
               <div class="card-title">Conclusion</div>
               <div class="card-body">
-                Small UX defaults in healthcare software can significantly affect clinical efficiency. This feature eliminates repetitive consultant selection across 12 note types, reducing errors and saving admin time daily.
+                Small UX defaults in healthcare software can significantly affect clinical efficiency. This feature
+                eliminates repetitive consultant selection across 12 note types, reducing errors and saving admin time
+                daily.
               </div>
             </div>
 
@@ -796,58 +869,61 @@
           <h3>Acknowledgements</h3>
           <ul>
             <li><span class="contact-item">
-              <strong>Course Convenor:</strong> Dr David Weir
-              <a href="mailto:David.Weir@ara.ac.nz">(David.Weir@ara.ac.nz)</a>
-            </span></li>
+                <strong>Course Convenor:</strong> Dr David Weir
+                <a href="mailto:David.Weir@ara.ac.nz">(David.Weir@ara.ac.nz)</a>
+              </span></li>
             <li><span class="contact-item">
-              <strong>Co-Convenor:</strong> Phillip Roxborogh
-              <a href="mailto:Phillip.Roxborogh@ara.ac.nz">(Phillip.Roxborogh@ara.ac.nz)</a>
-            </span></li>
+                <strong>Co-Convenor:</strong> Phillip Roxborogh
+                <a href="mailto:Phillip.Roxborogh@ara.ac.nz">(Phillip.Roxborogh@ara.ac.nz)</a>
+              </span></li>
             <li><span class="contact-item">
-              <strong>Academic Supervisor:</strong> Dr Dipendra Ghimire
-              <a href="mailto:Dipendra.Ghimire@ara.ac.nz">(Dipendra.Ghimire@ara.ac.nz)</a>
-            </span></li>
+                <strong>Academic Supervisor:</strong> Dr Dipendra Ghimire
+                <a href="mailto:Dipendra.Ghimire@ara.ac.nz">(Dipendra.Ghimire@ara.ac.nz)</a>
+              </span></li>
             <li><span class="contact-item">
-              <strong>Industry Supervisor:</strong> Donncha McAuliffe
-              <a href="mailto:Donncha@elixir.com">(donncha@elixir.com)</a>
-            </span></li>
+                <strong>Industry Supervisor:</strong> Donncha McAuliffe
+                <a href="mailto:Donncha@elixir.com">(donncha@elixir.com)</a>
+              </span></li>
           </ul>
         </div>
-          <div class="bottom-block">
-            <h3>References</h3>
-            <ol class="ref-list">
-              <li>
-                Radigan, D. (n.d.). <em>Kanban</em>. Atlassian.
-                <a href="https://www.atlassian.com/agile/kanban" target="_blank" rel="noopener noreferrer">
-                  https://www.atlassian.com/agile/kanban
-                </a>
-              </li>
-              <li>
-                <em>What Is Lean Software Development?</em> (n.d.). Scrum Alliance.
-                <a href="https://resources.scrumalliance.org/Article/lean-software-development" target="_blank" rel="noopener noreferrer">
-                  https://resources.scrumalliance.org/Article/lean-software-development
-                </a>
-              </li>
-              <li>
-                Atlassian. (n.d.). <em>What is DevOps?</em>
-                <a href="https://www.atlassian.com/devops" target="_blank" rel="noopener noreferrer">
-                  https://www.atlassian.com/devops
-                </a>
-              </li>
-              <li>
-                Atlassian. (n.d.). <em>Scrumban</em>.
-                <a href="https://www.atlassian.com/agile/project-management/scrumban" target="_blank" rel="noopener noreferrer">
-                  https://www.atlassian.com/agile/project-management/scrumban
-                </a>
-              </li>
-              <li>
-                Punnam, P. (2025, March 23). <em>QA in Agile Methodology</em>. ACCELQ.
-                <a href="https://www.accelq.com/blog/quality-assurance-in-agile-methodology/" target="_blank" rel="noopener noreferrer">
-                  https://www.accelq.com/blog/quality-assurance-in-agile-methodology/
-                </a>
-              </li>
-            </ol>
-          </div>
+        <div class="bottom-block">
+          <h3>References</h3>
+          <ol class="ref-list">
+            <li>
+              Radigan, D. (n.d.). <em>Kanban</em>. Atlassian.
+              <a href="https://www.atlassian.com/agile/kanban" target="_blank" rel="noopener noreferrer">
+                https://www.atlassian.com/agile/kanban
+              </a>
+            </li>
+            <li>
+              <em>What Is Lean Software Development?</em> (n.d.). Scrum Alliance.
+              <a href="https://resources.scrumalliance.org/Article/lean-software-development" target="_blank"
+                rel="noopener noreferrer">
+                https://resources.scrumalliance.org/Article/lean-software-development
+              </a>
+            </li>
+            <li>
+              Atlassian. (n.d.-a). <em>Scrumban</em>.
+              <a href="https://www.atlassian.com/agile/project-management/scrumban" target="_blank"
+                rel="noopener noreferrer">
+                https://www.atlassian.com/agile/project-management/scrumban
+              </a>
+            </li>
+            <li>
+              Atlassian. (n.d.-b). <em>What is DevOps?</em>
+              <a href="https://www.atlassian.com/devops" target="_blank" rel="noopener noreferrer">
+                https://www.atlassian.com/devops
+              </a>
+            </li>
+            <li>
+              Punnam, P. (2025, March 23). <em>QA in Agile Methodology</em>. ACCELQ.
+              <a href="https://www.accelq.com/blog/quality-assurance-in-agile-methodology/" target="_blank"
+                rel="noopener noreferrer">
+                https://www.accelq.com/blog/quality-assurance-in-agile-methodology/
+              </a>
+            </li>
+          </ol>
+        </div>
       </div>
 
       <!-- FOOTER -->
@@ -893,4 +969,5 @@
     </div>
   </div>
 </body>
+
 </html>
