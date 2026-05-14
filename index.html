@@ -17,6 +17,10 @@
       box-sizing: border-box;
     }
 
+    html {                                                                         
+      color-scheme: dark only;                                                            
+    }
+
     body {
       margin: 0;
       background: #0D1117;
@@ -44,15 +48,21 @@
     /* =========================
     MOBILE
   ========================= */
+    @media (max-width: 1280px) {
+      .poster {
+        transform: none;
+        width: 594mm;
+        min-height: 841mm;
+        zoom: 0.55;
+      }
+    }
+
     @media (max-width: 1024px) {
       .page-wrapper {
         padding: 10px;
       }
 
       .poster {
-        transform: none;
-        width: 594mm;
-        min-height: 841mm;
         zoom: 0.45;
       }
     }
@@ -66,6 +76,13 @@
         zoom: 0.35;
       }
 
+    }
+
+    @media (max-width: 440px) {
+      .poster {
+        transform-origin: top center;
+        zoom: 0.25;
+      }
     }
 
     @media (max-width: 390px) {
@@ -82,9 +99,7 @@
       width: 594mm;
       min-height: 841mm;
       box-shadow: 0 12px 45px rgba(0, 0, 0, 0.55);
-      background: #0D1117 url('assets/new-zealand-elixir-style.svg') center/70% no-repeat;
-      /* display: flex; */
-      /* flex-direction: column; */
+      background: #1e2330 url('assets/new-zealand-elixir-style.svg') center/70% no-repeat;
     }
 
     /* =========================
@@ -111,9 +126,9 @@
 
     /* ===== HEADER ===== */
     .header {
-      background: #010409f2;
+      background: #121417e6;
       color: #FFFFFF;
-      padding: 14mm 18mm 12mm 18mm;
+      padding: 14mm 20mm 12mm 20mm;
       display: flex;
       flex-direction: column;
       gap: 3mm;
@@ -133,19 +148,20 @@
     }
 
     .header-name {
-      font-size: 34pt;
+      font-size: 36pt;
       font-weight: 700;
       letter-spacing: 0.5px;
     }
 
     .header-institution {
-      font-size: 22pt;
+      font-size: 24pt;
       font-weight: 400;
-      color: #8B949E;
+      color: #B0B8C1;
     }
 
     .header-ara-logo {
-      height: 30mm;
+      padding-top: 0.5rem;
+      height: 32mm;
     }
 
     .header-title-row {
@@ -155,7 +171,7 @@
     }
 
     .header-logo {
-      height: 40mm;
+      height: 36mm;
       filter: invert(1);
       flex-shrink: 0;
     }
@@ -201,7 +217,7 @@
       display: flex;
       font-size: 24pt;
       font-weight: 400;
-      color: #8B949E;
+      color: #B0B8C1;
     }
 
     .header-bottom-right {
@@ -212,14 +228,12 @@
 
     .header-contact {
       display: flex;
-      /* gap: 14mm; */
-      /* align-items: center; */
       flex-wrap: wrap;
       gap: 2mm 14mm;
       margin-top: 1mm;
       margin-right: 10mm;
-      font-size: 16pt;
-      color: #8B949E;
+      font-size: 20pt;
+      color: #B0B8C1;
     }
 
     .contact-item {
@@ -251,9 +265,11 @@
     }
 
     sup {
-      font-size: 0.7em;
-      color: #8B949E;
+      font-size: 0.8em;
+      color: #B0B8C1;
       font-weight: 600;
+      vertical-align: super;
+      line-height: 0;
     }
 
     /* ===== KANBAN BOARD ===== */
@@ -265,13 +281,13 @@
       gap: 5mm;
     }
 
-    /* Each kanban row is a stacked section */
     .kanban-row {
       flex: auto;
       display: flex;
-      flex-direction: column;
-      gap: 4mm;
+      flex-direction: row;
+      gap: 5mm;
       min-height: 0;
+      width: 100%;
     }
 
     .kanban-row-large {
@@ -279,14 +295,18 @@
     }
 
     .row-label {
-      background: #161B22f7;
+      background: #161B22e6;
       color: #E6EDF3;
       border-radius: 4mm;
       padding: 3mm 8mm;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 4mm;
-      border: 1px solid #30363D;
+      justify-content: center;
+      gap: 5mm;
+      border: 1px solid #9CA3AF;
+      width: 45mm;
+      text-align: center;
     }
 
     .row-label-tag {
@@ -297,16 +317,16 @@
     }
 
     .row-label-title {
-      font-size: 24pt;
+      font-size: 22pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .row-label-subtitle {
-      font-size: 18pt;
+      font-size: 16pt;
       font-weight: 400;
-      color: #8B949E;
+      color: #B0B8C1;
       margin-left: 1mm;
     }
 
@@ -337,10 +357,10 @@
     /* ===== CARDS ===== */
     .card {
       flex: 1;
-      background: #161B22f2;
+      background: #161B22e6;
       border-radius: 3mm;
-      padding: 4mm 5mm 2mm 5mm;
-      border: 1px solid #30363D;
+      padding: 4mm 10mm 4mm 10mm;
+      border: 1px solid #9CA3AF;
       border-top: 2mm solid transparent;
       display: flex;
       flex-direction: column;
@@ -365,27 +385,33 @@
     }
 
     .card-title {
-      font-size: 24pt;
+      font-size: 26pt;
       font-weight: 700;
       color: #E6EDF3;
     }
 
     .card-caption-title {
-      font-size: 18pt;
+      font-size: 20pt;
       font-weight: 700;
       color: #E6EDF3;
     }
 
     .card-caption-description {
-      font-size: 18pt;
+      font-size: 20pt;
       font-style: italic;
       color: #E6EDF3;
     }
 
     .card-body {
-      font-size: 18pt;
+      font-size: 20pt;
       line-height: 1.45;
-      color: #C9D1D9;
+      color: #D4DBE3;
+    }
+
+    .card-body-large {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .card-body ul {
@@ -394,7 +420,14 @@
     }
 
     .card-body ul li {
-      margin-bottom: 2mm;
+      margin-bottom: 0;
+    }
+
+    .card-body ul {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
     }
 
     .card-body strong {
@@ -410,16 +443,16 @@
     .figure-image {
       width: fit-content;
       flex: 1 1 0;
-      min-height: 0%;
-      border: 1.5px dashed #30363D;
-      border-radius: 2mm;
+      min-height: 20rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #484F58;
-      font-size: 16pt;
-      /* background: #0D1117; */
       overflow: hidden;
+    }
+
+    .figure-image-border {                                                        
+      border: 1.5px dashed #9CA3AF;                                               
+      border-radius: 2mm;                                                         
     }
 
     .figure-image img {
@@ -429,66 +462,66 @@
     }
 
     .figure-note {
-      font-size: 14pt;
-      color: #8B949E;
+      font-size: 20pt;
+      color: #B0B8C1;
       font-style: italic;
-      /* text-align: center; */
     }
 
     .figure-note-caption {
-      font-size: 14pt;
-      color: #8B949E;
-      /* text-align: center; */
+      font-size: 20pt;
+      color: #B0B8C1;
     }
 
     /* ===== LEAN-AGILE STRIP ===== */
     .lean-strip {
-      background: #161B22f7;
+      background: #161B22e6;
       color: #E6EDF3;
       padding: 6mm 14mm;
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
       gap: 4mm;
-      border-top: 1px solid #30363D;
-      border-bottom: 1px solid #30363D;
+      border-top: 1px solid #9CA3AF;
+      border-bottom: 1px solid #9CA3AF;
     }
 
     .lean-strip-title {
-      font-size: 18pt;
+      font-size: 22pt;
       font-weight: 700;
       text-transform: uppercase;
+      text-align: center;
       letter-spacing: 1.5px;
-      color: #8B949E;
+      color: #B0B8C1;
     }
 
     .lean-pills {
       display: flex;
       gap: 5mm;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .lean-pill {
       display: flex;
       align-items: center;
-      gap: 2mm;
+      gap: 5mm;
       background: #21262D;
       border: 1px solid #30363D;
       border-radius: 20px;
       padding: 2.5mm 5mm;
-      font-size: 15pt;
+      font-size: 20pt;
       font-weight: 500;
-      color: #C9D1D9;
+      color: #D4DBE3;
     }
 
     .pill-icon {
-      font-size: 16pt;
+      font-size: 20pt;
     }
 
     .lean-pill .pill-detail {
-      color: #8B949E;
+      color: #B0B8C1;
       font-weight: 400;
-      font-size: 13pt;
+      font-size: 20pt;
     }
 
     /* ===== ACKNOWLEDGEMENTS & REFERENCES ===== */
@@ -497,11 +530,16 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12mm;
-      background: #0D1117f7;
+      background: #161B22e6;
+    }
+
+    .bottom-block {
+      display: flex;
+      flex-direction: column;
     }
 
     .bottom-block h3 {
-      font-size: 22pt;
+      font-size: 26pt;
       font-weight: 700;
       color: #E6EDF3;
       margin-bottom: 3mm;
@@ -509,22 +547,26 @@
 
     .bottom-block p,
     .bottom-block li {
-      font-size: 14pt;
+      font-size: 20pt;
       line-height: 1.5;
-      color: #8B949E;
+      color: #B0B8C1;
     }
 
     .bottom-block strong {
-      color: #C9D1D9;
+      color: #D4DBE3;
     }
 
     .bottom-block ul {
       list-style: none;
       padding: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
     }
 
     .bottom-block ul li {
-      margin-bottom: 1mm;
+      margin-bottom: 0;
     }
 
     .ref-list a {
@@ -543,7 +585,7 @@
 
     /* ===== FOOTER ===== */
     .footer {
-      background: #010409;
+      background: #121417e6;
       padding: 8mm 14mm;
       display: flex;
       align-items: center;
@@ -552,13 +594,21 @@
       border-top: 1px solid #21262D;
     }
 
+    .footer-title {
+      font-size: 20pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #B0B8C1;
+    }
+
     .tech-logo {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2.5mm;
-      color: #8B949E;
-      font-size: 13pt;
+      color: #B0B8C1;
+      font-size: 18pt;
       font-weight: 500;
     }
 
@@ -600,7 +650,6 @@
                 </div>
               </a>
               <div>
-                <!-- <div class="header-subtitle">Elixir Software Limited</div> -->
                 <div class="header-contact">
                   <span class="contact-item">
                     <img src="assets/email-icon.svg" alt="Email" class="contact-icon" style="filter: none;">
@@ -640,7 +689,7 @@
           <div class="row-label">
             <span class="row-label-tag tag-blue"></span>
             <span class="row-label-title">Backlog</span>
-            <span class="row-label-subtitle">&mdash; Context</span>
+            <div class="row-label-subtitle">Context</div>
           </div>
           <div class="row-cards">
             <div class="card card-blue">
@@ -659,32 +708,20 @@
                   types</strong>, reducing repetitive manual steps while preserving manual override capability.
               </div>
             </div>
-
-            <div class="card card-blue">
-              <div class="card-title">Problem Statement</div>
-              <div class="card-body">
-                <ul>
-                  <li>Long consultant lists in multi-doctor clinics</li>
-                  <li>Repeated selection for every note, letter, referral, form</li>
-                  <li>Increased risk of wrong consultant assignment</li>
-                  <li>12 different note types all requiring the same manual step</li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
 
         <!-- ROW 2: IN PROGRESS / METHOD -->
-        <div class="kanban-row">
+        <div class="kanban-row kanban-row-large">
           <div class="row-label">
             <span class="row-label-tag tag-amber"></span>
             <span class="row-label-title">In Progress</span>
-            <span class="row-label-subtitle">&mdash; Method</span>
+            <div class="row-label-subtitle">Method</div>
           </div>
           <div class="row-cards">
             <div class="card card-amber">
               <div class="card-title">Lean-Agile Approach</div>
-              <div class="card-body">
+              <div class="card-body card-body-large">
                 <ul>
                   <li><strong>Kanban:</strong><sup>1</sup> GitHub Projects board (Todo &rarr; In Progress &rarr; Review
                     &rarr; Done)</li>
@@ -696,27 +733,16 @@
               </div>
             </div>
 
-            <div class="card card-amber">
-              <div class="card-title">Development Workflow</div>
-              <div class="card-body">
-                <ul>
-                  <li>Branch-based development with pull requests</li>
-                  <li>Code review by senior developers</li>
-                  <li>Incremental implementation: one note type at a time</li>
-                  <li>Priority-ordered across 12 note types</li>
-                </ul>
+            <div class="card card-amber card-figure">
+              <div class="card-caption-title">Figure 1</div>
+              <div class="card-caption-description">My Development Journey</div>
+              <div class="figure-image figure-image-border">
+                <img src="assets/my-dev-journey.svg" alt="Screenshot: &quot;Auto-assign Note Types to&quot; dropdown"
+                  style="filter: invert(0); mix-blend-mode: difference; color: white;">
               </div>
-            </div>
-
-            <div class="card card-amber">
-              <div class="card-title">QA Pipeline<sup>5</sup></div>
-              <div class="card-body">
-                <ul>
-                  <li>Unit testing per component</li>
-                  <li>Structured usability test scenarios</li>
-                  <li>Three-stage promotion:<br><strong>Staging &rarr; Beta &rarr; Production</strong></li>
-                  <li>QA sign-off before each promotion</li>
-                </ul>
+              <div style="display: flex; gap: 1mm;">
+                <div class="figure-note">Note. </div>
+                <div class="figure-note-caption">My development journey based on the lean principles<sup>2</sup></div>
               </div>
             </div>
           </div>
@@ -727,12 +753,12 @@
           <div class="row-label">
             <span class="row-label-tag tag-green"></span>
             <span class="row-label-title">Done</span>
-            <span class="row-label-subtitle">&mdash; Delivered</span>
+            <div class="row-label-subtitle">Delivered</div>
           </div>
           <div class="row-cards">
             <div class="card card-green">
               <div class="card-title">Outcomes</div>
-              <div class="card-body">
+              <div class="card-body card-body-large">
                 <ul>
                   <li>All <strong>12 note types</strong> implemented and deployed to production</li>
                   <li>All 5 functional + 3 non-functional requirements met</li>
@@ -740,19 +766,6 @@
                   <li>Zero scope changes required</li>
                   <li>Feature live in clinical practices across NZ</li>
                 </ul>
-              </div>
-            </div>
-
-            <div class="card card-green card-figure">
-              <div class="card-caption-title">Figure 1</div>
-              <div class="card-caption-description">My Development Journey</div>
-              <div class="figure-image">
-                <img src="assets/my-dev-journey.svg" alt="Screenshot: &quot;Auto-assign Note Types to&quot; dropdown"
-                  style="filter: invert(0); mix-blend-mode: difference; color: white;">
-              </div>
-              <div style="display: flex; gap: 1mm;">
-                <div class="figure-note">Note. </div>
-                <div class="figure-note-caption">My development journey based on the lean principles<sup>2</sup></div>
               </div>
             </div>
 
@@ -768,18 +781,6 @@
                 <div class="figure-note-caption">The new dropdown in User Settings</div>
               </div>
             </div>
-
-            <!-- <div class="card card-green card-figure">
-              <div class="card-title">Figure 2</div>
-              <div class="card-caption">Auto-populated Note</div>
-              <div class="figure-image">
-                <img src="assets/Screenshot-field-auto.jpg" alt="Screenshot: Consultant field auto-populated" style="max-height: 60%;">
-              </div>
-                <div style="display: flex; gap: 1mm;">
-                  <div class="figure-note">Note. </div>
-                  <div class="figure-note-caption">A patient note with consultant auto-populated from defaults</div>
-                </div>
-            </div> -->
           </div>
         </div>
 
@@ -788,7 +789,7 @@
           <div class="row-label">
             <span class="row-label-tag tag-purple"></span>
             <span class="row-label-title">Review</span>
-            <span class="row-label-subtitle">&mdash; Reflect</span>
+            <div class="row-label-subtitle">Reflect</div>
           </div>
           <div class="row-cards">
             <div class="card card-purple">
@@ -808,17 +809,6 @@
                 Small UX defaults in healthcare software can significantly affect clinical efficiency. This feature
                 eliminates repetitive consultant selection across 12 note types, reducing errors and saving admin time
                 daily.
-              </div>
-            </div>
-
-            <div class="card card-purple">
-              <div class="card-title">Future Work</div>
-              <div class="card-body">
-                <ul>
-                  <li>Extend the functionality to further reduce unnecessary clicks</li>
-                  <li>Extend behaviour to filter default on Office section</li>
-                  <li>Extend behaviour to filter default on Inbox section</li>
-                </ul>
               </div>
             </div>
           </div>
@@ -915,19 +905,13 @@
                 https://www.atlassian.com/devops
               </a>
             </li>
-            <li>
-              Punnam, P. (2025, March 23). <em>QA in Agile Methodology</em>. ACCELQ.
-              <a href="https://www.accelq.com/blog/quality-assurance-in-agile-methodology/" target="_blank"
-                rel="noopener noreferrer">
-                https://www.accelq.com/blog/quality-assurance-in-agile-methodology/
-              </a>
-            </li>
           </ol>
         </div>
       </div>
 
       <!-- FOOTER -->
       <footer class="footer">
+        <div class="footer-title">Tools</div>
         <div class="tech-logo">
           <img src="assets/typescript-logo.svg" alt="TypeScript" class="tech-logo-icon" style="filter: none;">
           TypeScript
