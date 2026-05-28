@@ -128,7 +128,7 @@
     .header {
       background: #121417e6;
       color: #FFFFFF;
-      padding: 14mm 20mm 12mm 20mm;
+      padding: 14mm 20mm 7mm 20mm;
       display: flex;
       flex-direction: column;
       gap: 3mm;
@@ -154,7 +154,7 @@
     }
 
     .header-institution {
-      font-size: 24pt;
+      font-size: 26pt;
       font-weight: 400;
       color: #B0B8C1;
     }
@@ -232,7 +232,7 @@
       gap: 2mm 14mm;
       margin-top: 1mm;
       margin-right: 10mm;
-      font-size: 20pt;
+      font-size: 22pt;
       color: #B0B8C1;
     }
 
@@ -305,26 +305,26 @@
       justify-content: center;
       gap: 5mm;
       border: 1px solid #9CA3AF;
-      width: 45mm;
+      width: 55mm;
       text-align: center;
     }
 
     .row-label-tag {
-      width: 7mm;
-      height: 7mm;
+      width: 10mm;
+      height: 10mm;
       border-radius: 50%;
       flex-shrink: 0;
     }
 
     .row-label-title {
-      font-size: 22pt;
+      font-size: 24pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .row-label-subtitle {
-      font-size: 16pt;
+      font-size: 22pt;
       font-weight: 400;
       color: #B0B8C1;
       margin-left: 1mm;
@@ -385,25 +385,25 @@
     }
 
     .card-title {
-      font-size: 26pt;
+      font-size: 30pt;
       font-weight: 700;
       color: #E6EDF3;
     }
 
     .card-caption-title {
-      font-size: 20pt;
+      font-size: 24pt;
       font-weight: 700;
       color: #E6EDF3;
     }
 
     .card-caption-description {
-      font-size: 20pt;
+      font-size: 24pt;
       font-style: italic;
       color: #E6EDF3;
     }
 
     .card-body {
-      font-size: 20pt;
+      font-size: 24pt;
       line-height: 1.45;
       color: #D4DBE3;
     }
@@ -462,13 +462,13 @@
     }
 
     .figure-note {
-      font-size: 20pt;
+      font-size: 24pt;
       color: #B0B8C1;
       font-style: italic;
     }
 
     .figure-note-caption {
-      font-size: 20pt;
+      font-size: 24pt;
       color: #B0B8C1;
     }
 
@@ -476,7 +476,7 @@
     .lean-strip {
       background: #161B22e6;
       color: #E6EDF3;
-      padding: 6mm 14mm;
+      padding: 5mm;
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
@@ -486,7 +486,7 @@
     }
 
     .lean-strip-title {
-      font-size: 22pt;
+      font-size: 26pt;
       font-weight: 700;
       text-transform: uppercase;
       text-align: center;
@@ -509,19 +509,19 @@
       border: 1px solid #30363D;
       border-radius: 20px;
       padding: 2.5mm 5mm;
-      font-size: 20pt;
+      font-size: 22pt;
       font-weight: 500;
       color: #D4DBE3;
     }
 
     .pill-icon {
-      font-size: 20pt;
+      font-size: 22pt;
     }
 
     .lean-pill .pill-detail {
       color: #B0B8C1;
       font-weight: 400;
-      font-size: 20pt;
+      font-size: 22pt;
     }
 
     /* ===== ACKNOWLEDGEMENTS & REFERENCES ===== */
@@ -547,7 +547,7 @@
 
     .bottom-block p,
     .bottom-block li {
-      font-size: 20pt;
+      font-size: 22pt;
       line-height: 1.5;
       color: #B0B8C1;
     }
@@ -595,7 +595,7 @@
     }
 
     .footer-title {
-      font-size: 20pt;
+      font-size: 24pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -723,10 +723,10 @@
               <div class="card-title">Lean-Agile Approach</div>
               <div class="card-body card-body-large">
                 <ul>
-                  <li><strong>Kanban:</strong><sup>1</sup> GitHub Projects board (Todo &rarr; In Progress &rarr; Review
-                    &rarr; Done)</li>
-                  <li><strong>Lean:</strong><sup>2</sup> Incremental delivery, eliminate waste, minimal viable changes
+                  <li><strong>Lean:</strong><sup>1</sup> Incremental delivery, eliminate waste, minimal viable changes
                   </li>
+                  <li><strong>Kanban:</strong><sup>2</sup> GitHub Projects board (Todo &rarr; In Progress &rarr; Review
+                    &rarr; Done)</li>
                   <li><strong>Scrumban:</strong><sup>3</sup> Sprint-like focus within continuous flow</li>
                   <li><strong>DevOps:</strong><sup>4</sup> CI/CD with automated linting &amp; testing</li>
                 </ul>
@@ -817,41 +817,41 @@
       </div>
 
       <!-- LEAN-AGILE STRIP -->
-      <div class="lean-strip">
+      <!-- <div class="lean-strip">
         <div class="lean-strip-title">Lean-Agile Principles Applied</div>
         <div class="lean-pills">
           <span class="lean-pill">
             <span class="pill-icon">&#9634;</span>
             WIP Limits
-            <span class="pill-detail">&mdash; 1 note type at a time</span>
+            <span class="pill-detail">1 note type at a time</span>
           </span>
           <span class="lean-pill">
             <span class="pill-icon">&#8594;</span>
             Continuous Flow
-            <span class="pill-detail">&mdash; Kanban &rarr; continuous delivery</span>
+            <span class="pill-detail">Kanban &rarr; continuous delivery</span>
           </span>
           <span class="lean-pill">
             <span class="pill-icon">&#8635;</span>
             Feedback Loops
-            <span class="pill-detail">&mdash; Code review &rarr; QA &rarr; Staging &rarr; Prod</span>
+            <span class="pill-detail">Code review &rarr; QA &rarr; Staging &rarr; Prod</span>
           </span>
           <span class="lean-pill">
             <span class="pill-icon">&#10005;</span>
             Eliminate Waste
-            <span class="pill-detail">&mdash; Minimal changes to stable codebase</span>
+            <span class="pill-detail">Minimal changes to stable codebase</span>
           </span>
           <span class="lean-pill">
             <span class="pill-icon">&#9776;</span>
             Visual Management
-            <span class="pill-detail">&mdash; GitHub Projects board</span>
+            <span class="pill-detail">GitHub Projects board</span>
           </span>
           <span class="lean-pill">
             <span class="pill-icon">&#8592;</span>
             Pull System
-            <span class="pill-detail">&mdash; Work pulled from backlog</span>
+            <span class="pill-detail">Work pulled from backlog</span>
           </span>
         </div>
-      </div>
+      </div> -->
 
       <!-- ACKNOWLEDGEMENTS & REFERENCES -->
       <div class="bottom-section">
@@ -880,16 +880,16 @@
           <h3>References</h3>
           <ol class="ref-list">
             <li>
-              Radigan, D. (n.d.). <em>Kanban</em>. Atlassian.
-              <a href="https://www.atlassian.com/agile/kanban" target="_blank" rel="noopener noreferrer">
-                https://www.atlassian.com/agile/kanban
-              </a>
-            </li>
-            <li>
               <em>What Is Lean Software Development?</em> (n.d.). Scrum Alliance.
               <a href="https://resources.scrumalliance.org/Article/lean-software-development" target="_blank"
                 rel="noopener noreferrer">
                 https://resources.scrumalliance.org/Article/lean-software-development
+              </a>
+            </li>
+            <li>
+              Radigan, D. (n.d.). <em>Kanban</em>. Atlassian.
+              <a href="https://www.atlassian.com/agile/kanban" target="_blank" rel="noopener noreferrer">
+                https://www.atlassian.com/agile/kanban
               </a>
             </li>
             <li>
